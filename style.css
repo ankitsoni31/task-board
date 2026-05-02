@@ -1,0 +1,247 @@
+/* 🔥 RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* 🔥 VARIABLES */
+:root {
+    --bg-color: #0b0f1a;
+    --bg-button-color: #141a2a;
+    --bg-task-color: #1f273a;
+    --primary-text-color: #e6eaf2;
+    --delete-color: #ff4d4d;
+
+    --nav-padding: 15px 30px;
+    --section-padding: 15px 30px;
+
+    --padding-s: 5px;
+    --padding-m: 10px;
+    --padding-l: 15px;
+    --padding-xl: 20px;
+
+    --border-radius-s: 6px;
+    --border-radius-m: 10px;
+}
+
+/* 🔥 BODY */
+body {
+    background: linear-gradient(135deg, #0b0f1a, #020617);
+    color: var(--primary-text-color);
+}
+
+/* 🔥 MAIN */
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 🔥 NAV */
+nav {
+    padding: var(--nav-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 🔥 LOGO */
+nav .left {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+nav .left span {
+    color: #ff4d9d; /* Flow pink */
+}
+
+/* 🔥 BUTTON CONTAINER */
+nav .right {
+    display: flex;
+    gap: 10px;
+}
+
+/* 🔥 BUTTON BASE */
+nav button {
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* 🔥 ADD TASK (PURPLE) */
+#toggle-modal {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+#toggle-modal:hover {
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+    transform: translateY(-2px);
+}
+
+/* 🔥 CLEAR (PINK) */
+#clear-all {
+    background: linear-gradient(135deg, #ff4d9d, #ff0066);
+}
+
+#clear-all:hover {
+    box-shadow: 0 0 10px rgba(255, 0, 102, 0.6);
+    transform: translateY(-2px);
+}
+
+/* 🔥 BOARD */
+section {
+    padding: var(--section-padding);
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+/* 🔥 COLUMN */
+.task-column {
+    background-color: var(--bg-button-color);
+    flex: 1;
+    padding: var(--padding-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    border-radius: var(--border-radius-m);
+    overflow-y: auto;
+    transition: 0.3s ease;
+}
+
+/* 🔥 DRAG EFFECT (CLEAN DASHED) */
+.task-column.hover-over {
+    border: 2px dashed rgba(255,255,255,0.6);
+    transform: scale(1.01);
+}
+
+/* 🔥 HEADING */
+.heading {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+/* 🔥 TASK */
+.task {
+    background-color: var(--bg-task-color);
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s);
+    cursor: grab;
+    transition: 0.2s;
+}
+
+.task:hover {
+    transform: translateY(-3px);
+}
+
+/* 🔥 DELETE */
+.task button {
+    align-self: flex-end;
+    padding: 5px 10px;
+    border-radius: var(--border-radius-s);
+    border: none;
+    background-color: var(--delete-color);
+    color: white;
+    cursor: pointer;
+}
+
+/* 🔥 MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal .bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+}
+
+/* 🔥 MODAL BOX */
+.modal .center {
+    background-color: var(--bg-button-color);
+    padding: var(--padding-xl);
+    border-radius: var(--border-radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    width: 300px;
+    max-width: 90%;
+    z-index: 10;
+}
+
+/* 🔥 INPUT */
+.modal input,
+.modal textarea {
+    width: 100%;
+    background-color: var(--bg-task-color);
+    border: none;
+    outline: none;
+    color: var(--primary-text-color);
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-s);
+}
+
+/* textarea resize off */
+textarea {
+    resize: none;
+}
+
+/* 🔥 ADD BUTTON */
+.modal button {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border: none;
+    padding: var(--padding-m);
+    color: white;
+    border-radius: var(--border-radius-m);
+    cursor: pointer;
+}
+
+/* 🔥 RESPONSIVE */
+@media (max-width: 900px) {
+    section {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav .right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    nav button {
+        width: 100%;
+    }
+}
